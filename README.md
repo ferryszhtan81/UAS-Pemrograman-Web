@@ -7,4 +7,4 @@ For installation, please take these steps below:
 - Clone project atau download kode project ini.
 - Install XAMPP.
 - Import SQL database (minimarket.sql) melalui PHPMyAdmin.
-- Masuk ke https://localhost/ atau https://localhost:8080/
+- Masuk ke https://localhost/UAS-Pemrograman-Web/
