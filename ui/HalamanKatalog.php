@@ -72,8 +72,8 @@ $dataInfo = ambilInfoBarang($koneksi);
                             <td><?php echo $data['stok'] ?></td>
 
                             <td>
-                                <a href="../halaman/editalam.php?halaman=editalam&id=<?= $data['id']; ?>" name="edit"><button class="editbutton">Edit</button></a>
-                                <a href="../halaman/hapusalam.php?halaman=hapusalam&id=<?= $data['id']; ?>" onclick="return confirm('Yakin Hapus?')"><button type="button" class="hapusbutton">Hapus</button></a>
+                                <button class="editbutton">Edit</button>
+                                <button type="button" class="hapusbutton">Hapus</button>
                             </td>
                         </tr>
 
