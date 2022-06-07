@@ -9,4 +9,4 @@ For installation, please take these steps below:
 - Clone project atau download kode project ini.
 - Install XAMPP.
 - Import SQL database (minimarket.sql) melalui PHPMyAdmin.
-- Silahkan masuk ke https://localhost/UAS-Pemrograman-Web-main/
+- Silahkan masuk ke https://localhost/UAS-Pemrograman-Web-main/ui/FormLogin.php setelah melaukan steps-steps tersebut.
