@@ -45,7 +45,7 @@ $dataInfo = ambilInfoBarang($koneksi);
 
             </div>
 
-            <a href="../ui/InputKatalog.php"><button type="button" class="addbutton">+ Tambah</button></a>
+            <a href="../ui/FormKatalog.php"><button type="button" class="addbutton">+ Tambah</button></a>
 
             <table class="content-table" data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0">
                 <thead>
