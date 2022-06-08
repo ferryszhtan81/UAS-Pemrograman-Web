@@ -35,7 +35,7 @@ $dataInfo = ambilInfoBarang($koneksi);
         <div class="main_content">
             <div class="header1">
 
-                <b class="judul">Katalog Barang</b>
+                <b class="judul">Form Input Katalog</b>
 
 
                 <b class="admin"><?php echo $_SESSION["username"] ?></b>
@@ -44,48 +44,9 @@ $dataInfo = ambilInfoBarang($koneksi);
                 </a>
 
             </div>
-
+            
             <a href="../ui/FormKatalog.php"><button type="button" class="addbutton">+ Tambah</button></a>
 
-            <table class="content-table" data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0">
-                <thead>
-                    <tr>
-                        <th>NO</th>
-                        <th>GAMBAR</th>
-                        <th>NAMA</th>
-                        <th>KATEGORI</th>
-                        <th>STOK</th>
-                        <th>AKSI</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $nomor = 1; ?>
-                    <?php foreach ($data as $data) : ?>
-                        <tr>
-                            <?php $info = ambilSatuInfoBarang($koneksi, $data['id_info_barang']);
-                            $kategori = ambilNamaKategori($koneksi, $info['id_kategori']); ?>
-
-                            <td width="3%"><?php echo $nomor ?></td>
-                            <td width="20%"><img src="../res/<?php echo $info['gambar'] ?>" height="100px" width="100px"></td>
-                            <td width="20%"><?php echo $info['nama_barang'] ?></td>
-                            <td><?php echo $kategori['nama_kategori'] ?></td>
-                            <td><?php echo $data['stok'] ?></td>
-
-                            <td>
-                                <button class="editbutton">Edit</button>
-                                <button type="button" class="hapusbutton">Hapus</button>
-                            </td>
-                        </tr>
-
-                        <!-- Modal Data -->
-
-                        <!-- AKHIR CRUD -->
-                        <?php $nomor++; ?>
-                    <?php endforeach ?>
-
-                    <!-- <tr class="active-row"> -->
-                </tbody>
-            </table>
             <br><br>
         </div>
     </div>
