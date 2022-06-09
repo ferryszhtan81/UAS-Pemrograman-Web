@@ -54,15 +54,15 @@ if (isset($_POST['btn_edit'])) {
                 <table class='table table-hover table-responsive table-bordered'>
                 <tr>
                     <td>NAMA</td>
-                    <td><input type="text" class="form-control" name="nama_barang" value="<?php echo $product->name; ?>" id="id_info_barang" required /></td>
+                    <td><input type="text" class="form-control" name="nama_barang" value="<?php echo $nama; ?>" id="id_info_barang" required /></td>
                 </tr>
                 <tr>
                     <td>STOK</td>
-                    <td><input type="text" class="form-control" name="stok" value="<?php echo $product->name; ?>" id="id_info_barang" required /></td>
+                    <td><input type="text" class="form-control" name="stok" value="<?php echo $stok; ?>" id="id_info_barang" required /></td>
                 </tr>
                     <tr>
                     <td>KATEGORI</td>
-                    <td><input type="text" class="form-control" name="kategori" value="<?php echo $product->name; ?>" id="id_kategori" required /></td>
+                    <td><input type="text" class="form-control" name="kategori" value="<?php echo $kategori; ?>" id="id_kategori" required /></td>
                     </td>
                 </tr>
                 <tr>
