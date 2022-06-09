@@ -8,6 +8,13 @@ isLogin("HalamanHome.php");
 $data = ambilBarang($koneksi);
 $dataInfo = ambilInfoBarang($koneksi);
 ?>
+<?php
+// if the form was submitted - PHP OOP CRUD Tutorial
+if (isset($_POST['btn_tambah'])) {
+    tambah_barang($_POST['nama'], $gambar, $_POST['stok'], $_POST['kategori'] $koneksi);
+    unset($_POST['btn_tambah']);
+}
+?>
 
 <html lang="en">
 
@@ -45,7 +52,31 @@ $dataInfo = ambilInfoBarang($koneksi);
 
             </div>
             
-            <a href="../ui/FormKatalog.php"><button type="button" class="addbutton">+ Tambah</button></a>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
+                <table class='table table-hover table-responsive table-bordered'>
+                <tr>
+                    <td>NAMA</td>
+                    <td><input type="text" class="form-control" name="nama_barang" id="nomor_member" required /></td>
+                </tr>
+                <tr>
+                    <td>GAMBAR</td>
+                    <td><input type="file" name="gambar_barang" required /></td>
+                </tr>
+                <tr>
+                    <td>STOK</td>
+                    <td><input type="text" class="form-control" name="stok" required /></td>
+                </tr>
+                    <tr>
+                    <td>KATEGORI</td>
+                    <td><input type="text" class="form-control" name="kategori" /></td>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button type="submit" class="btn btn-success" name="btn_tambah">Simpan</button></td>
+                </tr>
+                </table>
+            </form>
 
             <br><br>
         </div>
