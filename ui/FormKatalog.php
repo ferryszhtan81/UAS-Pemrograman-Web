@@ -9,7 +9,7 @@ $data = ambilBarang($koneksi);
 $dataInfo = ambilInfoBarang($koneksi);
 
 if (isset($_POST['btn_tambah'])) {
-    tambah_barang($_POST['nama'], $_POST['gambar'], $_POST['stok'], $_POST['kategori'], $koneksi);
+    tambahbarang($_POST['nama'], $_POST['gambar'], $_POST['stok'], $_POST['kategori'], $koneksi);
     unset($_POST['btn_tambah']);
 }
 ?>
