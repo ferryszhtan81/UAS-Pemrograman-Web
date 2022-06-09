@@ -72,8 +72,8 @@ $dataInfo = ambilInfoBarang($koneksi);
                             <td><?php echo $data['stok'] ?></td>
 
                             <td>
-                                <a href="../halaman/FormKatalogEdit.php?page=editkatalog&id=<?= $data['id']; ?>" name="edit"><button type="button" class="editbutton">Edit</button></a>
-                                <a href="../halaman/FormKatalogHapus.php?page=hapuskatalog&id=<?= $data['id']; ?>" onclick="return confirm('Yakin Hapus?')"><button type="button" class="hapusbutton">Hapus</button></a>
+                                <a href="../ui/FormEditKatalog.php?id=<?= $data['id']; ?>" name="edit"><button type="button" class="editbutton">Edit</button></a>
+                                <a href="../ui/HapusKatalog.php?id=<?= $data['id']; ?>" onclick="return confirm('Yakin Hapus?')"><button type="button" class="hapusbutton">Hapus</button></a>
                             </td>
                         </tr>
 
