@@ -7,11 +7,9 @@ require '../helper/Model.php';
 isLogin("HalamanHome.php");
 $data = ambilBarang($koneksi);
 $dataInfo = ambilInfoBarang($koneksi);
-?>
-<?php
-// if the form was submitted - PHP OOP CRUD Tutorial
+
 if (isset($_POST['btn_tambah'])) {
-    tambah_barang($_POST['nama'], $gambar, $_POST['stok'], $_POST['kategori'] $koneksi);
+    tambah_barang($_POST['nama'], $_POST['gambar'], $_POST['stok'], $_POST['kategori'], $koneksi);
     unset($_POST['btn_tambah']);
 }
 ?>
@@ -52,23 +50,23 @@ if (isset($_POST['btn_tambah'])) {
 
             </div>
             
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
+            <form method="post" class="form">
                 <table class='table table-hover table-responsive table-bordered'>
                 <tr>
                     <td>NAMA</td>
-                    <td><input type="text" class="form-control" name="nama_barang" id="nomor_member" required /></td>
+                    <td><input type="text" class="form-control" name="nama_barang" id="id_info_barang" required /></td>
                 </tr>
                 <tr>
                     <td>GAMBAR</td>
-                    <td><input type="file" name="gambar_barang" required /></td>
+                    <td><input type="file" name="gambar" required /></td>
                 </tr>
                 <tr>
                     <td>STOK</td>
-                    <td><input type="text" class="form-control" name="stok" required /></td>
+                    <td><input type="text" class="form-control" name="stok" id="id_info_barang" required /></td>
                 </tr>
                     <tr>
                     <td>KATEGORI</td>
-                    <td><input type="text" class="form-control" name="kategori" /></td>
+                    <td><input type="text" class="form-control" name="kategori" id="id_kategori" required /></td>
                     </td>
                 </tr>
                 <tr>
