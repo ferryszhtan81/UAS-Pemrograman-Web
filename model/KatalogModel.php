@@ -153,12 +153,16 @@ function hapusBarang($id, $koneksi)
         return mysqli_error($koneksi);
     }
 
+    $fetch = mysqli_query($koneksi, "SELECT * FROM info_barang WHERE id_info_barang=$info_id");
+    $info_b = mysqli_fetch_assoc($fetch);
+    $nama = $info_b['nama_barang'];
+
     $query = "DELETE FROM info_barang WHERE id_info_barang=$info_id";
     $result = mysqli_query($koneksi, $query);
     if (!$result) {
         return mysqli_error($koneksi);
     } else {
-        hapusLog();
+        hapusLog($koneksi, $nama);
         return 1;
     }
 }
