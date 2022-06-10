@@ -4,86 +4,122 @@ require '../helper/Koneksi.php';
 require '../model/KatalogModel.php';
 require '../helper/Model.php';
 
-isLogin("HalamanHome.php");
-$koneksi = mysqli_connect('localhost', 'root', '', 'minimarket');
-$data = ambilBarang($koneksi);
-$dataInfo = ambilInfoBarang($koneksi);
+isLogin("FormKatalog.php");
+$kategori = ambilKategori($koneksi);
 
-if (isset($_POST['btn_tambah'])) {
-    tambahbarang($_POST['nama'], $_POST['gambar'], $_POST['stok'], $_POST['nama_kategori'], $koneksi);
-    unset($_POST['btn_tambah']);
+if (isset($_POST['simpan'])) {
+    echo "<script>alert('Data Diproses!');</script>";
+    if ($_POST['simpan'] == false) {
+        tambahBarang(
+            $_POST['nama'],
+            $_POST['kategori'],
+            $_POST['stok'],
+            $koneksi
+        );
+    } else {
+        updateBarang(
+            $_POST['id_barang'],
+            $_POST['nama'],
+            $_POST['kategori'],
+            $_POST['stok'],
+            $koneksi
+        );
+    }
 }
+
+if (isset($_POST['tambah'])) {
+    $isEdit = false;
+    $title = "Input Barang Baru";
+} else if (isset($_POST['edit'])) {
+    $isEdit = true;
+    $title = "Edit Barang";
+    $data = ambilSatuBarang($koneksi, $_POST['edit']);
+    $infoData = ambilSatuInfoBarang($koneksi, $data['id_info_barang']);
+} else {
+    echo "<script>window.location.href='HalamanKatalog.php'</script>";
+}
+
+
 ?>
 
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Alam Admin</title>
-    <link rel="stylesheet" type="text/css" href="../css/PageStyle2.css">
+    <title><?= $title ?></title>
+    <link rel="stylesheet" type="text/css" href="../css/FormStyle.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 </head>
 
-<body class="modal-open">
-
+<body>
     <div class="wrapper">
-        <div class="sidebar">
-            <h2>SI Minimarket</h2>
-            <div class="menu">
-                <ul>
-                    <li><a href="HalamanHome.php">Home</a></li>
-                    <li><a href="HalamanKatalog.php">Katalog</a></li>
-                    <li><a href="HalamanLog.php">Log</a></li>
-                </ul>
-            </div>
-        </div>
         <div class="main_content">
             <div class="header1">
-
-                <b class="judul">Form Input Katalog</b>
-
-
-                <b class="admin"><?php echo $_SESSION["username"] ?></b>
-                <a href="../helper/Logout.php">
+                <b class="judul"><?= $title ?></b>
+                <b class="admin"><?php echo $_SESSION['username'] ?></b>
+                <a href="../config/logout.php">
                     <button type="button" name="logout">Logout</button>
                 </a>
-
             </div>
-            
-            <form method="post" class="form">
-                <table class='table table-hover table-responsive table-bordered'>
-                <tr>
-                    <td>NAMA</td>
-                    <td><input type="text" class="form-control" name="nama_barang" id="id_info_barang" required /></td>
-                </tr>
-                <tr>
-                    <td>GAMBAR</td>
-                    <td><input type="file" name="gambar" required /></td>
-                </tr>
-                <tr>
-                    <td>STOK</td>
-                    <td><input type="text" class="form-control" name="stok" id="id_info_barang" required /></td>
-                </tr>
-                    <tr>
-                    <td>KATEGORI</td>
-                    <td><input type="text" class="form-control" name="nama_kategori" id="id_kategori" required /></td>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><button type="submit" class="btn btn-success" name="btn_tambah">Simpan</button></td>
-                </tr>
-                </table>
-            </form>
-
-            <br><br>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <br>
+    <div class="container">
+        <div class="card" style="box-shadow: 0 5px 10px rgba(65, 60, 60, 0.2);">
+            <div class="card-header" style="background-color: #7C1212">
+                <label></label>
+            </div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data">
+
+                    <?php if ($isEdit) : ?>
+                        <div class="form-group">
+                            <input type="hidden" name="id_barang" class="form-control" value="<?= $data['id_barang'] ?>">
+                        </div>
+                    <?php endif; ?>
+
+                    <div class="form-group">
+                        <label>Gambar Barang</label>
+                        <input type="file" name="gambar" class="form-control" <?php if ($isEdit) : ?> disabled <?php else : echo "required";
+                                                                                                            endif; ?>>
+                    </div>
+                    <div class="form-group">
+                        <label>Nama Barang</label>
+                        <input type="text" class="form-control" name="nama" <?php if ($isEdit) : ?> value="<?= $infoData['nama_barang'] ?>" <?php endif; ?> required>
+                    </div>
+                    <div class="form-group">
+                        <label>Kategori</label>
+
+                        <?php foreach ($kategori as $kategori) : ?>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="kategori" id="<?= $kategori['nama_kategori'] ?>" value="<?= $kategori['id_kategori'] ?>" <?php if ($isEdit) : if ($infoData['id_kategori'] == $kategori['id_kategori']) : ?> checked <?php endif;
+                                                                                                                                                                                                                                                                endif; ?> required>
+                                <label class="form-check-label" for="<?= $kategori['nama_kategori'] ?>">
+                                    <?= $kategori['nama_kategori'] ?>
+                                </label>
+                            </div>
+
+                        <?php endforeach ?>
+
+                    </div>
+                    <div class="form-group">
+                        <label>Stok</label>
+                        <br>
+                        <input type="number" name="stok" class="form-control" min="1" max="9999" <?php if ($isEdit) : ?> value="<?= $data['stok'] ?>" <?php endif; ?> required>
+                    </div>
+                    <br>
+                    <p align="right">
+                        <button class="btn btn-success" type="submit" name="simpan" value="<?= $isEdit ?>">Simpan</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
 </body>
 
 </html>
