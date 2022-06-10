@@ -5,7 +5,6 @@ require '../model/KatalogModel.php';
 require '../helper/Model.php';
 
 isLogin("HalamanHome.php");
-$koneksi = mysqli_connect('localhost', 'root', '', 'minimarket');
 $data = ambilBarang($koneksi);
 $dataInfo = ambilInfoBarang($koneksi);
 ?>
@@ -14,7 +13,7 @@ $dataInfo = ambilInfoBarang($koneksi);
 
 <head>
     <meta charset="UTF-8">
-    <title>Alam Admin</title>
+    <title>Katalog</title>
     <link rel="stylesheet" type="text/css" href="../css/PageStyle2.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
@@ -45,48 +44,45 @@ $dataInfo = ambilInfoBarang($koneksi);
                 </a>
 
             </div>
+            <form method="POST" action="FormKatalog.php">
+                <button type="submit" class="addbutton" name="tambah" value="tambah">+ Tambah</button>
 
-            <a href="../ui/FormKatalog.php"><button type="button" class="addbutton">+ Tambah</button></a>
 
-            <table class="content-table" data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0">
-                <thead>
-                    <tr>
-                        <th>NO</th>
-                        <th>GAMBAR</th>
-                        <th>NAMA</th>
-                        <th>KATEGORI</th>
-                        <th>STOK</th>
-                        <th>AKSI</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $nomor = 1; ?>
-                    <?php foreach ($data as $data) : ?>
+                <table class="content-table" data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0">
+                    <thead>
                         <tr>
-                            <?php $info = ambilSatuInfoBarang($koneksi, $data['id_info_barang']);
-                            $kategori = ambilNamaKategori($koneksi, $info['id_kategori']); ?>
-
-                            <td width="3%"><?php echo $nomor ?></td>
-                            <td width="20%"><img src="../res/<?php echo $info['gambar'] ?>" height="100px" width="100px"></td>
-                            <td width="20%"><?php echo $info['nama_barang'] ?></td>
-                            <td><?php echo $kategori['nama_kategori'] ?></td>
-                            <td><?php echo $data['stok'] ?></td>
-
-                            <td>
-                                <a href="../ui/FormEditKatalog.php" name="edit"><button type="button" class="editbutton">Edit</button></a>
-                                <a href="../ui/HapusItemKatalog.php" onclick="return confirm('Yakin Hapus?')"><button type="button" class="hapusbutton">Hapus</button></a>
-                            </td>
+                            <th>NO</th>
+                            <th>GAMBAR</th>
+                            <th>NAMA</th>
+                            <th>KATEGORI</th>
+                            <th>STOK</th>
+                            <th>AKSI</th>
                         </tr>
+                    </thead>
+                    <tbody>
+                        <?php $nomor = 1; ?>
+                        <?php foreach ($data as $data) : ?>
+                            <tr>
+                                <?php $info = ambilSatuInfoBarang($koneksi, $data['id_info_barang']);
+                                $kategori = ambilNamaKategori($koneksi, $info['id_kategori']); ?>
 
-                        <!-- Modal Data -->
+                                <td width="3%"><?php echo $nomor ?></td>
+                                <td width="20%"><img src="../res/<?php echo $info['gambar'] ?>" height="100px" width="100px"></td>
+                                <td width="20%"><?php echo $info['nama_barang'] ?></td>
+                                <td><?php echo $kategori['nama_kategori'] ?></td>
+                                <td><?php echo $data['stok'] ?></td>
 
-                        <!-- AKHIR CRUD -->
-                        <?php $nomor++; ?>
-                    <?php endforeach ?>
+                                <td>
+                                    <button type="submit" class="editbutton" name="edit" value="<?php echo $data['id_barang'] ?>">Edit</button>
+                                    <a href="../helper/Hapus.php" onclick="return confirm('Yakin Hapus?')"><button type="submit" class="hapusbutton" name="hapus" value="<?php echo $data['id_barang'] ?>">Hapus</button></a>
+                                </td>
+                            </tr>
 
-                    <!-- <tr class="active-row"> -->
-                </tbody>
-            </table>
+                            <?php $nomor++; ?>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </form>
             <br><br>
         </div>
     </div>
