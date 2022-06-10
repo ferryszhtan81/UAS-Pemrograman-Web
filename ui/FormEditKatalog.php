@@ -10,7 +10,7 @@ $data = ambilBarang($koneksi);
 $dataInfo = ambilInfoBarang($koneksi);
 
 if (isset($_POST['btn_edit'])) {
-    updatebarang($_POST['nama'], $_POST['stok'], $_POST['kategori'], $koneksi);
+    updatebarang($id, $_POST['nama_barang'], $_POST['stok'], $_POST['nama_kategori'], $koneksi);
     unset($_POST['btn_edit']);
 }
 ?>
@@ -52,24 +52,29 @@ if (isset($_POST['btn_edit'])) {
             </div>
             
             <form method="post" class="form">
+                <?php foreach ($data as $data) : ?>
                 <table class='table table-hover table-responsive table-bordered'>
+                    <tr>
+                            <?php $info = ambilSatuInfoBarang($koneksi, $data['id_info_barang']);
+                            $kategori = ambilNamaKategori($koneksi, $info['id_kategori']); ?>
                 <tr>
                     <td>NAMA</td>
-                    <td><input type="text" class="form-control" name="nama_barang" value="<?php echo $nama; ?>" id="id_info_barang" required /></td>
+                    <td><input type="text" class="form-control" name="nama_barang" value="<?php echo $info['nama_barang']; ?>" id="id_info_barang" required /></td>
                 </tr>
                 <tr>
                     <td>STOK</td>
-                    <td><input type="text" class="form-control" name="stok" value="<?php echo $stok; ?>" id="id_info_barang" required /></td>
+                    <td><input type="text" class="form-control" name="stok" value="<?php echo $data['stok']; ?>" id="id_info_barang" required /></td>
                 </tr>
                     <tr>
                     <td>KATEGORI</td>
-                    <td><input type="text" class="form-control" name="kategori" value="<?php echo $kategori; ?>" id="id_kategori" required /></td>
+                    <td><input type="text" class="form-control" name="nama_kategori" value="<?php echo $kategori['nama_kategori']; ?>" id="id_kategori" required /></td>
                     </td>
                 </tr>
                 <tr>
                     <td></td>
                     <td><button type="submit" class="btn btn-success" name="btn_edit">Simpan</button></td>
                 </tr>
+                    <?php endforeach;?>
                 </table>
             </form>
 
