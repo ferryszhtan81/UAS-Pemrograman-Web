@@ -74,7 +74,7 @@ $dataInfo = ambilInfoBarang($koneksi);
 
                             <td>
                                 <a href="../ui/FormEditKatalog.php" name="edit"><button type="button" class="editbutton">Edit</button></a>
-                                <a href="../ui/HapusKatalog.php" onclick="return confirm('Yakin Hapus?')"><button type="button" class="hapusbutton">Hapus</button></a>
+                                <a href="../ui/HapusItemKatalog.php" onclick="return confirm('Yakin Hapus?')"><button type="button" class="hapusbutton">Hapus</button></a>
                             </td>
                         </tr>
 
