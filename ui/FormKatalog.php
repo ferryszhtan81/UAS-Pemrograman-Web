@@ -35,6 +35,9 @@ if (isset($_POST['tambah'])) {
     $title = "Edit Barang";
     $data = ambilSatuBarang($koneksi, $_POST['edit']);
     $infoData = ambilSatuInfoBarang($koneksi, $data['id_info_barang']);
+} else if (isset($_POST['hapus'])) {
+    hapusBarang($_POST['hapus'], $koneksi);
+    echo "<script>window.location.href='HalamanKatalog.php'</script>";
 } else {
     echo "<script>window.location.href='HalamanKatalog.php'</script>";
 }
