@@ -74,7 +74,7 @@ $dataInfo = ambilInfoBarang($koneksi);
 
                                 <td>
                                     <button type="submit" class="editbutton" name="edit" value="<?php echo $data['id_barang'] ?>">Edit</button>
-                                    <a href="../helper/Hapus.php" onclick="return confirm('Yakin Hapus?')"><button type="submit" class="hapusbutton" name="hapus" value="<?php echo $data['id_barang'] ?>">Hapus</button></a>
+                                    <a onclick="return confirm('Yakin Hapus?')"><button type="submit" class="hapusbutton" name="hapus" value="<?php echo $data['id_barang'] ?>">Hapus</button></a>
                                 </td>
                             </tr>
 
