@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Jun 2022 pada 03.37
+-- Waktu pembuatan: 10 Jun 2022 pada 17.25
 -- Versi server: 10.4.21-MariaDB
 -- Versi PHP: 8.0.12
 
@@ -39,7 +39,8 @@ CREATE TABLE `barang` (
 
 INSERT INTO `barang` (`id_barang`, `id_info_barang`, `stok`) VALUES
 (1, 1, 30),
-(2, 2, 10);
+(2, 2, 20),
+(3, 3, 25);
 
 -- --------------------------------------------------------
 
@@ -60,7 +61,8 @@ CREATE TABLE `info_barang` (
 
 INSERT INTO `info_barang` (`id_info_barang`, `nama_barang`, `gambar`, `id_kategori`) VALUES
 (1, 'Indomie Rasa Soto Banjar', 'Indomie_Soto_Banjar.png', 1),
-(2, 'Sendal Nippon', 'Sendal_Nippon.png', 2);
+(2, 'Sendal Nippon', 'Sendal_Nippon.png', 2),
+(3, 'Oreo Double Stuf', '../res//Double_Stuf_Oreo.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -90,8 +92,22 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 CREATE TABLE `log` (
   `id_log` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
+  `aksi` varchar(150) NOT NULL,
   `tanggal` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `log`
+--
+
+INSERT INTO `log` (`id_log`, `id_user`, `aksi`, `tanggal`) VALUES
+(1, 1, 'Logout', '2022-06-09 17:15:53'),
+(2, 1, 'Login', '2022-06-09 17:15:58'),
+(3, 1, 'Logout', '2022-06-09 17:44:59'),
+(4, 1, 'Login', '2022-06-09 17:45:12'),
+(5, 1, 'Mengedit Barang: Oreo Double Stuf', '2022-06-09 22:25:50'),
+(6, 1, 'Mengedit Barang: Sendal Nippon', '2022-06-09 22:26:10'),
+(7, 1, 'Logout', '2022-06-09 22:26:44');
 
 -- --------------------------------------------------------
 
@@ -158,13 +174,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `info_barang`
 --
 ALTER TABLE `info_barang`
-  MODIFY `id_info_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_info_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori`
@@ -176,7 +192,7 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT untuk tabel `log`
 --
 ALTER TABLE `log`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
