@@ -10,7 +10,7 @@ $data = ambilBarang($koneksi);
 $dataInfo = ambilInfoBarang($koneksi);
 
 if (isset($_POST['btn_tambah'])) {
-    tambahbarang($_POST['nama'], $_POST['gambar'], $_POST['stok'], $_POST['kategori'], $koneksi);
+    tambahbarang($_POST['nama'], $_POST['gambar'], $_POST['stok'], $_POST['nama_kategori'], $koneksi);
     unset($_POST['btn_tambah']);
 }
 ?>
@@ -67,7 +67,7 @@ if (isset($_POST['btn_tambah'])) {
                 </tr>
                     <tr>
                     <td>KATEGORI</td>
-                    <td><input type="text" class="form-control" name="kategori" id="id_kategori" required /></td>
+                    <td><input type="text" class="form-control" name="nama_kategori" id="id_kategori" required /></td>
                     </td>
                 </tr>
                 <tr>
